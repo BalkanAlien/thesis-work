@@ -1,0 +1,22 @@
+{
+  "name": "canned-messages-migration-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/inindca/canned-messages-migration-service.git"
+  },
+  "author": "Marija Turmakoska",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://bitbucket.org/inindca/canned-messages-migration-service/issues"
+  },
+  "homepage": "https://bitbucket.org/inindca/canned-messages-migration-service#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
