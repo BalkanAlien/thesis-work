@@ -7,6 +7,6 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.route("/").get(getAllCannedMessages);
+app.route("/export").get(getAllCannedMessages);
 
 app.listen(port);
