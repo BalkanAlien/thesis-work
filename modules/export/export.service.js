@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const BASE_URL = "https://admin-backend-alphado1.bold360.io/aid/2307475884/v1/setup/folders/chatCannedMessages";
-
-export const findAll = () => {
-    return axios.get(`${BASE_URL}`, {
+// API key for 2307475884 2307475884:3232803079762238:vD83XBmsKRGIIy4nEz8EQHO69Acg69kS:alphado1
+// API key for 622858923344832311 
+export const findAll = (accountId, apiKey) => {
+    return axios.get(`${process.env.BASE_URL}/aid/${accountId}/v1/setup/folders/chatCannedMessages`, {
         headers: {
-            'X-API-KEY': '2307475884:3232803079762238:vD83XBmsKRGIIy4nEz8EQHO69Acg69kS:alphado1'
+            'X-API-KEY': apiKey
         }
     });
 };
