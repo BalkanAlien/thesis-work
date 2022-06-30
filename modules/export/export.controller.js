@@ -1,6 +1,6 @@
 import { findAll } from "./export.service.js";
 
-export const getAllCannedMessages = async (req, res, next) => {
+export const getAllCannedMessages = async (req, res) => {
 
     const accountId = req.query.accountId;
     const apiKey = req.query.apiKey;
@@ -14,7 +14,6 @@ export const getAllCannedMessages = async (req, res, next) => {
     }
     try {
         const response = await findAll(accountId, apiKey);
-        console.log('messages', response.data);
         res.send(response.data);
     }
     catch (error) {
