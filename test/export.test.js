@@ -11,7 +11,6 @@ describe("export controller test", () => {
 		chai.request(app)
 			.get('/export')
 			.end((err, res) => {
-				console.log("first test ", res.status);
 				expect(res).to.have.status(400);
 			});
 	});
@@ -20,7 +19,6 @@ describe("export controller test", () => {
 		chai.request(app)
 			.get('/export').query({ accountId: '232434231' })
 			.end((err, res) => {
-				console.log("2 test ", res.status);
 				expect(res).to.have.status(400);
 			});
 	});
@@ -29,7 +27,6 @@ describe("export controller test", () => {
 		chai.request(app)
 			.get('/export').query({ apiKey: '232434231' })
 			.end((err, res) => {
-				console.log("3 test ", res.status);
 				expect(res).to.have.status(400);
 			});
 	});
@@ -38,7 +35,6 @@ describe("export controller test", () => {
 		chai.request(app)
 			.get('/export').query({ accountId: '4m2ndos933' })
 			.end((err, res) => {
-				console.log("4 test ", res.status);
 				expect(res).to.have.status(400);
 			});
 	});
