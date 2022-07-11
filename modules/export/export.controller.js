@@ -1,18 +1,21 @@
 import { findAll } from "./export.service.js";
 
+const regexContainsNumbersOnly = /^\d+$/;
+
 export const getAllCannedMessages = async (req, res) => {
   const accountId = req.query.accountId;
   const apiKey = req.query.apiKey;
 
   if (!accountId || !apiKey) {
     res.status(400).send("Missing an accountId OR an API key.");
-  } else if (!/^\d+$/.test(accountId)) {
+  } else if (!regexContainsNumbersOnly.test(accountId)) {
     res.status(400).send("The accountId should contain only numbers!");
   }
   try {
     const response = await findAll(accountId, apiKey);
-    res.send(response.data);
+    res.send(response);
   } catch (error) {
-    res.status(500).send({ error: "Error 500" });
+     console.log(error);
+     res.status(500).send({ error: "Error 500" });
   }
 };

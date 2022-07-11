@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export const findAll = (accountId, apiKey) => {
-  return axios.get(
+export const findAll = async (accountId, apiKey) => {
+  const result = await axios.get(
     `${process.env.BASE_URL}/aid/${accountId}/v1/setup/folders/chatCannedMessages`,
     {
       headers: {
@@ -9,4 +9,6 @@ export const findAll = (accountId, apiKey) => {
       },
     }
   );
+  
+  return result.data;
 };
