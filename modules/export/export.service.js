@@ -9,6 +9,6 @@ export const findAll = async (accountId, apiKey) => {
       },
     }
   );
-  
+
   return result.data;
 };

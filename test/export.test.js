@@ -12,7 +12,7 @@ const expect = chai.expect;
 describe("export controller test", () => {
   sinon.stub(axios, "get").resolves(Promise.resolve({ data: mockObject }));
 
-  it("should return 400 if accountId and apiKey are not specified", () => {
+  it("should return 400 if accountId and apiKey are not specified", (done) => {
     chai
       .request(app)
       .get("/export")
@@ -20,10 +20,11 @@ describe("export controller test", () => {
         expect(err).to.be.null;
         expect(res).to.have.status(400);
         expect(res.text).to.be.equal("Missing an accountId OR an API key.");
+        done();
       });
   });
 
-  it("should return 400 if apiKey is not specified", () => {
+  it("should return 400 if apiKey is not specified", (done) => {
     chai
       .request(app)
       .get("/export")
@@ -34,10 +35,11 @@ describe("export controller test", () => {
         expect(err).to.be.null;
         expect(res).to.have.status(400);
         expect(res.text).to.be.equal("Missing an accountId OR an API key.");
+        done();
       });
   });
 
-  it("should return 400 if accountId is not specified", () => {
+  it("should return 400 if accountId is not specified", (done) => {
     chai
       .request(app)
       .get("/export")
@@ -48,10 +50,11 @@ describe("export controller test", () => {
         expect(err).to.be.null;
         expect(res).to.have.status(400);
         expect(res.text).to.be.equal("Missing an accountId OR an API key.");
+        done();
       });
   });
 
-  it("should return 400 if accountId does not contain only numbers", () => {
+  it("should return 400 if accountId does not contain only numbers", (done) => {
     chai
       .request(app)
       .get("/export")
@@ -65,10 +68,11 @@ describe("export controller test", () => {
         expect(res.text).to.be.equal(
           "The accountId should contain only numbers!"
         );
+        done();
       });
   });
 
-  it("should return 200 if accountId and apiKey are specified", () => {
+  it("should return 200 if accountId and apiKey are specified", (done) => {
     chai
       .request(app)
       .get("/export")
@@ -80,10 +84,11 @@ describe("export controller test", () => {
         expect(err).to.be.null;
         expect(res).to.have.status(200);
         expect(res.body).to.deep.equal(mockObject);
+        done();
       });
   });
 
-  it("should return 500 if findAll is rejected", () => {
+  it("should return 500 if findAll is rejected", (done) => {
     axios.get.restore();
     sinon.stub(axios, "get").throws();
     chai
@@ -97,6 +102,7 @@ describe("export controller test", () => {
         expect(err).to.be.null;
         expect(res).to.have.status(500);
         expect(res.body).to.deep.equal({ error: "Error 500" });
+        done();
       });
   });
 });

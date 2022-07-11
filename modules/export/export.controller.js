@@ -8,14 +8,17 @@ export const getAllCannedMessages = async (req, res) => {
 
   if (!accountId || !apiKey) {
     res.status(400).send("Missing an accountId OR an API key.");
+    console.log("Missing an accountId OR an API key.");
   } else if (!regexContainsNumbersOnly.test(accountId)) {
     res.status(400).send("The accountId should contain only numbers!");
-  }
-  try {
-    const response = await findAll(accountId, apiKey);
-    res.send(response);
-  } catch (error) {
-     console.log(error);
-     res.status(500).send({ error: "Error 500" });
+    console.log("The accountId should contain only numbers!");
+  } else {
+    try {
+      const response = await findAll(accountId, apiKey);
+      res.send(response);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({ error: "Error 500" });
+    }
   }
 };
