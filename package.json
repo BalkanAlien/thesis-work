@@ -1,0 +1,37 @@
+{
+  "type": "module",
+  "name": "canned-messages-migration-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node index.js",
+    "devStart": "nodemon index.js",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/inindca/canned-messages-migration-service.git"
+  },
+  "author": "Marija Turmakoska",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://bitbucket.org/inindca/canned-messages-migration-service/issues"
+  },
+  "homepage": "https://bitbucket.org/inindca/canned-messages-migration-service#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.3.0",
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
+    "eslint": "^8.18.0",
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.19",
+    "sinon": "^14.0.0"
+  }
+}
