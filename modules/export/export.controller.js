@@ -1,4 +1,6 @@
 import { findAll } from "./export.service.js";
+import { Folder } from "../../helpers/Folder.js";
+import { Message } from "../../helpers/Message.js";
 
 const regexContainsNumbersOnly = /^\d+$/;
 
@@ -15,7 +17,7 @@ export const getAllCannedMessages = async (req, res) => {
   } else {
     try {
       const response = await findAll(accountId, apiKey);
-      res.send(response);
+      const result = await res.send(response);
     } catch (error) {
       console.log(error);
       res.status(500).send({ error: "Error 500" });

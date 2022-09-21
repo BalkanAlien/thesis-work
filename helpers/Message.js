@@ -33,9 +33,8 @@ const messageModel = mongoose.Schema({
     type: String,
   },
   setupItemId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Folder",
+    type: Number,
   },
 });
 
-module.exports = mongoose.model("Message", messageModel);
+export const Message = mongoose.model("Message", messageModel);

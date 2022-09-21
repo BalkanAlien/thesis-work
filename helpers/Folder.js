@@ -8,13 +8,14 @@ const folderModel = mongoose.Schema({
     type: String,
   },
   parentId: {
-    type: null,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Folder",
   },
   folderType: {
     type: String,
   },
-  folders: [{ type: mongoose.Schema.Types.ObjectId, ref: "Subfolder" }],
+  folders: [{ type: mongoose.Schema.Types.ObjectId, ref: "Folder" }],
   items: [{ type: mongoose.Schema.Types.ObjectId, ref: "Message" }],
 });
 
-module.exports = mongoose.model("Folder", folderModel);
+export const Folder = mongoose.model("Folder", folderModel);
