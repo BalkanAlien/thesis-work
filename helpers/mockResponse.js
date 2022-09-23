@@ -1,12 +1,12 @@
 // here I created a mock response
-const mockObject = {
+export const mockObject = {
   id: "0",
   name: null,
   parentId: null,
   folderType: "chatCannedMessages",
   folders: [
     {
-      id: "3195588631115178",
+      id: 3195588631115178,
       name: "Testfolder",
       parentId: null,
       folderType: "chatCannedMessages",
@@ -77,4 +77,16 @@ const mockObject = {
   ],
 };
 
-export default mockObject;
+export const mockMessage = {
+  id: 2888102250465731,
+  name: "bye",
+  folderId: null,
+  updated: "2022-05-25T11:15:36.367Z",
+  frontendFolderId: null,
+  text: "Thanks for contacting us.  Please do not hesitate to contact us again if we can be of further assistance.",
+  keywords: "bye",
+  subject: null,
+  slashCommand: null,
+  language: null,
+  setupItemId: "2888102250465731",
+};

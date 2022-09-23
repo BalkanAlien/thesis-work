@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const messageModel = mongoose.Schema({
   id: {
     type: Number,
+    required: true,
   },
   name: {
     type: String,
@@ -33,7 +34,7 @@ const messageModel = mongoose.Schema({
     type: String,
   },
   setupItemId: {
-    type: Number,
+    type: String,
   },
 });
 
