@@ -1,27 +1,29 @@
 import mongoose from "mongoose";
 
 const folderModel = mongoose.Schema({
+  _id: {
+    type: mongoose.Schema.Types.ObjectId,
+  },
   id: {
     type: Number,
-    required: true,
   },
   name: {
     type: String,
   },
   parentId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Folder",
+    type: Number,
   },
   folderType: {
     type: String,
-    required: true,
   },
   folders: [
-    { type: mongoose.Schema.Types.ObjectId, ref: "Folder", required: true },
+    {
+      _id: { type: mongoose.Schema.Types.ObjectId, ref: "Folder" },
+    },
   ],
-  items: [
-    { type: mongoose.Schema.Types.ObjectId, ref: "Message", required: true },
-  ],
+  items: [{ type: mongoose.Schema.Types.ObjectId, ref: "Message" }],
 });
+
+//folderModel.add({ folders: [folderModel] });
 
 export const Folder = mongoose.model("Folder", folderModel);

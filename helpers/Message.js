@@ -1,15 +1,17 @@
 import mongoose from "mongoose";
 
 const messageModel = mongoose.Schema({
+  _id: {
+    type: mongoose.Schema.Types.ObjectId,
+  },
   id: {
     type: Number,
-    required: true,
   },
   name: {
     type: String,
   },
   folderId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.String,
     ref: "Folder",
   },
   updated: {

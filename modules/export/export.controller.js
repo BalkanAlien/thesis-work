@@ -1,11 +1,7 @@
-import {
-  findAll,
-  saveCannedFolder,
-  saveCannedMessage,
-} from "./export.service.js";
+import { findAll, saveCannedFolder } from "./export.service.js";
 import { Folder } from "../../helpers/Folder.js";
 import { Message } from "../../helpers/Message.js";
-import { mockMessage } from "../../helpers/mockResponse.js";
+import { mockMessage, mockObject } from "../../helpers/mockResponse.js";
 
 const regexContainsNumbersOnly = /^\d+$/;
 
@@ -22,9 +18,7 @@ export const getAllCannedMessages = async (req, res) => {
   } else {
     try {
       const response = await findAll(accountId, apiKey);
-      const mockSave = await saveCannedMessage(response);
-      //const getFolders = await saveCannedFolder(response);
-      console.log(mockSave);
+      const getFolders = await saveCannedFolder(response);
       const result = await res.send(response);
     } catch (error) {
       console.log(error);
