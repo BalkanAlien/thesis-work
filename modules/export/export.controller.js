@@ -1,7 +1,5 @@
-import { findAll, saveCannedFolder } from "./export.service.js";
-import { Folder } from "../../helpers/Folder.js";
-import { Message } from "../../helpers/Message.js";
-import { mockMessage, mockObject } from "../../helpers/mockResponse.js";
+import { findAll } from "./export.service.js";
+import * as fs from "fs";
 
 const regexContainsNumbersOnly = /^\d+$/;
 
@@ -18,7 +16,11 @@ export const getAllCannedMessages = async (req, res) => {
   } else {
     try {
       const response = await findAll(accountId, apiKey);
-      const getFolders = await saveCannedFolder(response);
+      const convertedResponse = JSON.stringify(response);
+      fs.writeFile("file.txt", convertedResponse, (err) => {
+        if (err) throw err;
+        console.log("Data has been written successfully");
+      });
       const result = await res.send(response);
     } catch (error) {
       console.log(error);

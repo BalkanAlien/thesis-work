@@ -90,3 +90,4 @@ export const mockMessage = {
   language: null,
   setupItemId: "2888102250465731",
 };
+console.log(mockObject.folders.length);
