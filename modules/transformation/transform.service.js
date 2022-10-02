@@ -6,7 +6,9 @@ export const readAllSavedMessages = () => {
     if (err) console.log("Error reading file: ", err);
     try {
       const convertedResponse = JSON.parse(jsonString);
-      joinFolders(convertedResponse);
+      //joinFolders(convertedResponse);
+      joinText(mockObject);
+
       return convertedResponse;
     } catch (err) {
       console.log("Error parsing JSON string: ", err);
@@ -15,18 +17,36 @@ export const readAllSavedMessages = () => {
 };
 
 //recursive generator function that yields array paths of name attributes
-let flattenFolders = function* ({ name = "", folders = [], items = [] }) {
+function* flattenFolders({ name = "", folders = [], items = [] }) {
   yield [name];
   for (const x of [...folders, ...items]) {
     for (const path of flattenFolders(x)) {
       yield [name, ...path];
     }
   }
-};
+}
 
-//connects the paths with /
+//connects the subfolders paths with /
 function joinFolders(data) {
   for (const path of flattenFolders(data)) {
     console.log(path.join("/"));
   }
+}
+
+function* flattenText({ folders = [], items = [], text = "" }) {
+  yield [text];
+  for (const x of [...folders, ...items]) {
+    for (const path of flattenText(x)) {
+      yield [text, ...path];
+    }
+  }
+}
+
+//returns an array of texts in the canned message
+function joinText(data) {
+  let arrOfText = [...flattenText(data)];
+  arrOfText = arrOfText.flat();
+  arrOfText = arrOfText.filter((e) => String(e).trim());
+  console.log(arrOfText);
+  return arrOfText;
 }
