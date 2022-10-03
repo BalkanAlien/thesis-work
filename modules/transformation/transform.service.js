@@ -6,9 +6,7 @@ export const readAllSavedMessages = () => {
     if (err) console.log("Error reading file: ", err);
     try {
       const convertedResponse = JSON.parse(jsonString);
-      //joinFolders(convertedResponse);
-      joinText(mockObject);
-
+      console.log(createLibraries(convertedResponse));
       return convertedResponse;
     } catch (err) {
       console.log("Error parsing JSON string: ", err);
@@ -28,9 +26,27 @@ function* flattenFolders({ name = "", folders = [], items = [] }) {
 
 //connects the subfolders paths with /
 function joinFolders(data) {
+  let arr = [];
   for (const path of flattenFolders(data)) {
-    console.log(path.join("/"));
+    arr.push(path.join("/"));
   }
+  arr.shift();
+  return arr;
+}
+
+//recursive generator functions that yields paths of node objects
+function* flat(t = {}) {
+  yield [t];
+  for (const x of [...(t.folders ?? []), ...(t.items ?? [])])
+    for (const path of flat(x)) yield [t, ...path];
+}
+
+function joinFoldersAndIds(data) {
+  let arr = [];
+  for (const path of flat(data))
+    arr.push(path.map((node) => `${node.name ?? " "}${node.id}`).join(" "));
+  arr.shift();
+  return arr;
 }
 
 function* flattenText({ folders = [], items = [], text = "" }) {
@@ -49,4 +65,26 @@ function joinText(data) {
   arrOfText = arrOfText.filter((e) => String(e).trim());
   console.log(arrOfText);
   return arrOfText;
+}
+
+//libraries consist of id, name, selfUri(idk what is this)
+let libraries = [];
+function createLibraries(data) {
+  // here i create an array of ids
+  const arrOfSubfolderNames = joinFolders(data);
+  const arrOfSubfoldersNamesAndIds = joinFoldersAndIds(data);
+  for (let i = 0; i < arrOfSubfoldersNamesAndIds.length; i++) {
+    arrOfSubfoldersNamesAndIds[i] = arrOfSubfoldersNamesAndIds[i].substring(
+      arrOfSubfoldersNamesAndIds[i].length - 16
+    );
+  }
+  for (let i = 0; i < arrOfSubfolderNames.length; i++) {
+    let arrObject = {
+      id: arrOfSubfoldersNamesAndIds[i],
+      name: arrOfSubfolderNames[i],
+      selfUri: "",
+    };
+    libraries.push(arrObject);
+  }
+  return libraries;
 }
