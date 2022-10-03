@@ -6,7 +6,9 @@ export const readAllSavedMessages = () => {
     if (err) console.log("Error reading file: ", err);
     try {
       const convertedResponse = JSON.parse(jsonString);
-      console.log(createLibraries(convertedResponse));
+      //console.log(createLibraries(convertedResponse));
+      //joinText(mockObject);
+      console.log(createTexts(mockObject));
       return convertedResponse;
     } catch (err) {
       console.log("Error parsing JSON string: ", err);
@@ -68,11 +70,12 @@ function joinText(data) {
 }
 
 //libraries consist of id, name, selfUri(idk what is this)
-let libraries = [];
 function createLibraries(data) {
-  // here i create an array of ids
+  let libraries = [];
+  // here i create an array of subfolder names
   const arrOfSubfolderNames = joinFolders(data);
   const arrOfSubfoldersNamesAndIds = joinFoldersAndIds(data);
+  //an array of subfolders ids
   for (let i = 0; i < arrOfSubfoldersNamesAndIds.length; i++) {
     arrOfSubfoldersNamesAndIds[i] = arrOfSubfoldersNamesAndIds[i].substring(
       arrOfSubfoldersNamesAndIds[i].length - 16
@@ -87,4 +90,22 @@ function createLibraries(data) {
     libraries.push(arrObject);
   }
   return libraries;
+}
+
+//creating texts
+const isHTML = RegExp.prototype.test.bind(/(<([^>]+)>)/i);
+function createTexts(data) {
+  let texts = [];
+  const arrOfTexts = joinText(data);
+  for (let i = 0; i < arrOfTexts.length; i++) {
+    let temp = "";
+    if (isHTML(arrOfTexts[i])) temp = "text/html";
+    else temp = "text/plain";
+    let textObject = {
+      content: arrOfTexts[i],
+      contentType: temp,
+    };
+    texts.push(textObject);
+  }
+  return texts;
 }
