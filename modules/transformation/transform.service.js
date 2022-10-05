@@ -6,9 +6,9 @@ export const readAllSavedMessages = () => {
     if (err) console.log("Error reading file: ", err);
     try {
       const convertedResponse = JSON.parse(jsonString);
-      //console.log(createLibraries(convertedResponse));
+      console.log(createLibraries(convertedResponse));
       //joinText(mockObject);
-      console.log(createTexts(mockObject));
+      //console.log(createTexts(mockObject));
       return convertedResponse;
     } catch (err) {
       console.log("Error parsing JSON string: ", err);
@@ -69,7 +69,6 @@ function joinText(data) {
   return arrOfText;
 }
 
-//libraries consist of id, name, selfUri(idk what is this)
 function createLibraries(data) {
   let libraries = [];
   // here i create an array of subfolder names
@@ -81,11 +80,16 @@ function createLibraries(data) {
       arrOfSubfoldersNamesAndIds[i].length - 16
     );
   }
+  //remove first / char
+  for (let i = 0; i < arrOfSubfolderNames.length; i++) {
+    arrOfSubfolderNames[i] = arrOfSubfolderNames[i].slice(1);
+  }
+
   for (let i = 0; i < arrOfSubfolderNames.length; i++) {
     let arrObject = {
       id: arrOfSubfoldersNamesAndIds[i],
       name: arrOfSubfolderNames[i],
-      selfUri: "",
+      //selfUri: "",
     };
     libraries.push(arrObject);
   }
