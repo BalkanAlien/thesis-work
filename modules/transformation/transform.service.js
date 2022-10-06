@@ -6,9 +6,14 @@ export const readAllSavedMessages = () => {
     if (err) console.log("Error reading file: ", err);
     try {
       const convertedResponse = JSON.parse(jsonString);
-      console.log(createLibraries(convertedResponse));
-      //joinText(mockObject);
-      //console.log(createTexts(mockObject));
+      //console.log(createLibraries(convertedResponse));
+      //joinText(convertedResponse);
+      //console.log(createTexts(convertedResponse));
+      //console.log(storeSubstitutions(convertedResponse));
+      //console.log(joinItemIds(convertedResponse));
+      //console.log(joinText(convertedResponse));
+      //console.log(joinItemIds(convertedResponse));
+      console.log(joinFolderIds(convertedResponse));
       return convertedResponse;
     } catch (err) {
       console.log("Error parsing JSON string: ", err);
@@ -60,12 +65,21 @@ function* flattenText({ folders = [], items = [], text = "" }) {
   }
 }
 
+function joinFolderIds(data) {
+  let arr = [];
+  for (const path of flattenFolderId(data)) {
+    arr.push(path);
+  }
+  return arr;
+}
+
+//this will be moved in the import part
 //returns an array of texts in the canned message
 function joinText(data) {
   let arrOfText = [...flattenText(data)];
   arrOfText = arrOfText.flat();
   arrOfText = arrOfText.filter((e) => String(e).trim());
-  console.log(arrOfText);
+  console.log(arrOfText.length);
   return arrOfText;
 }
 
@@ -97,6 +111,7 @@ function createLibraries(data) {
 }
 
 //creating texts
+//this will be moved in the import part
 const isHTML = RegExp.prototype.test.bind(/(<([^>]+)>)/i);
 function createTexts(data) {
   let texts = [];
@@ -112,4 +127,31 @@ function createTexts(data) {
     texts.push(textObject);
   }
   return texts;
+}
+
+//first i need to check whether the text contains ${} and store these values
+const hasTemplateLiteral = /\${(.*?)\}/g;
+
+function storeSubstitutions(data) {
+  let textarr = joinText(data);
+  let substitutionsMessages = [];
+  for (let i = 0; i < textarr.length; i++) {
+    if (textarr[i].search(hasTemplateLiteral) > -1) {
+      substitutionsMessages.push(textarr[i]);
+    }
+  }
+  let substitutionsArr = [];
+  // grabbing the template literal part only
+  for (let i = 0; i < substitutionsMessages.length; i++) {
+    let startIndex = substitutionsMessages[i].indexOf("${");
+    let endIndex = substitutionsMessages[i].indexOf("}");
+    substitutionsArr.push(
+      substitutionsMessages[i].slice(startIndex + 2, endIndex)
+    );
+  }
+  return substitutionsArr;
+}
+
+function createResponses(data) {
+  let responses = [];
 }
