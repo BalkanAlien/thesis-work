@@ -1,4 +1,4 @@
-import { findAll, saveResponse } from "./export.service.js";
+import { findAll } from "./export.service.js";
 import * as fs from "fs";
 import { readAllSavedMessages } from "../transformation/transform.service.js";
 const regexContainsNumbersOnly = /^\d+$/;
@@ -16,15 +16,15 @@ export const getAllCannedMessages = async (req, res) => {
   } else {
     try {
       const response = await findAll(accountId, apiKey);
-      //const convertedResponse = JSON.stringify(response);
-      /*fs.writeFile("file.json", convertedResponse, (err) => {
+      const convertedResponse = JSON.stringify(response);
+      fs.writeFile("file.json", convertedResponse, (err) => {
         if (err) throw err;
         console.log("Data has been written successfully");
-      });*/
-      const savedResponse = await saveResponse(response);
-      console.log(savedResponse);
-      //const getBack = readAllSavedMessages();
-      //console.log(getBack);
+      });
+      //const savedResponse = await saveResponse(response);
+      //console.log(savedResponse);
+      const getBack = readAllSavedMessages();
+      console.log(getBack);
       const result = await res.send(response);
     } catch (error) {
       console.log(error);
