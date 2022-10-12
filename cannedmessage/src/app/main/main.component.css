@@ -1,0 +1,23 @@
+span {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#inner-bold, #inner-genesys {
+    display: flex;
+  justify-content:center;
+  align-items: center;
+}
+/*
+#bold-logo {
+    width: 10%;
+    height: 10%;
+    object-fit: scale-down;
+}
+
+#genesys-logo {
+    width: 15%;
+    height: 15%;
+    object-fit: scale-down;
+}*/
