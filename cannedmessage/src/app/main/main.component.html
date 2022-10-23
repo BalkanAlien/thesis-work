@@ -2,14 +2,87 @@
 <div class="container">
   <img class="boldLogo" src="../../assets/images/boldLogo.png"/>
   <p class="boldText">Please select the canned messages you want to import to Genesys DX.</p>
+  <div class="boldSearch">
+    <input type="search" placeholder="Search" class="search-field"/>
+    <button type="submit" class="search-button">
+      <img src="../../assets/images/search.png">
+    </button>
+  </div>
   <div class="child"> 
+    <div id="bold-table">
+    <div id="resp-table-header">
+      <div class="table-header-cell">
+        <input type="checkbox" style="pointer-events:none">
+      </div>
+      <div class="table-header-cell">
+        <img id="folderLogo" src="../../assets/images/folder.png">
+      </div>
+      <div class="table-header-cell">
+        Channel
+      </div>
+      <div class="table-header-cell">
+        Content
+      </div>
+      <div class="table-header-cell">
+        Modified
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="nav-buttons">
+    <button>&lt;&lt;</button>
+    &nbsp;
+    <button>&lt;</button>
+    &nbsp;
+    <button>></button>
+    &nbsp;
+    <button>>></button>
   </div>
   <button class="migratebutton">Migrate selected</button>
 </div>
   <div class="container2">
   <img class="genesysLogo" src="../../assets/images/genesysLogo.png"/>
   <p class="genesysText">Your imported messages will appear here.</p>
-  <div class="child2"></div>
+  <div class="genesysSearch">
+    <input type="search" placeholder="Search" class="search-field"/>
+    <button type="submit" class="search-button">
+      <img src="../../assets/images/search.png">
+    </button>
+  </div>
+  <div class="child2">
+    <div id="genesys-table">
+      <div id="resp-table-header">
+        <div class="table-header-cell">
+          <input type="checkbox" style="pointer-events:none">
+        </div>
+        <div class="table-header-cell">
+          <img id="folderLogo" src="../../assets/images/folder.png">
+        </div>
+        <div class="table-header-cell">
+          Name
+        </div>
+        <div class="table-header-cell">
+          Content
+        </div>
+        <div class="table-header-cell">
+          Date created
+        </div>
+        <div class="table-header-cell">
+          Actions
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-buttons">
+    <button>&lt;&lt;</button>
+    &nbsp;
+    <button>&lt;</button>
+    &nbsp;
+    <button>></button>
+    &nbsp;
+    <button>>></button>
+  </div>
+  <button class="importselectedbutton">Import selected</button>
   <button class="importbutton">Import all</button>
 </div>
 </div>

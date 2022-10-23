@@ -2,19 +2,21 @@
     font-family: arial;
     font-size: 24px;
     width: 600px;
-    height: 650px;
-    outline: solid 2px black;
+    height: 700px;
+    outline: solid 2px grey;
     /* Center vertically and horizontally */
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    border-radius: 5px;
   }
   
   .child, .child2 {
-    width: 450px;
-    height: 350px;
-    outline: solid 2px black;
+    width: 570px;
+    height: 420px;
+    outline: solid 2px grey;
+    border-radius: 5px;
   }
 
 .parent {
@@ -25,26 +27,116 @@
     text-align: center;
 }
 
-.migratebutton, .importbutton {
+.migratebutton, .importbutton  {
   position: absolute;
   bottom: 30px;
   right: 70px;
+  background-color: blue;
+  color: white;
+  border: 1px solid grey;
+  border-left: none;
+  font-weight: bold;
+  height: 30px;
+}
+
+.importselectedbutton {
+  position: absolute;
+  bottom: 30px;
+  color: black;
+  border: 1px solid grey;
+  font-weight: bold;
+  height: 30px;
+  background-color: #f9f6f2;
+  right: 190px;
 }
 
 .boldLogo {
   position: absolute;
-  top: 40px;
-  height: 60px;
-  width: 210px;
+  top: 20px;
+  height: 50px;
+  width: 200px;
 }
 
 .genesysLogo {
   position: absolute;
-  top: 0px;
+  top: -15px;
+  height: 130px;
 }
 
 .boldText, .genesysText {
   position: absolute;
-  font-size: small;
-  top: 105px;
+  font-size: 14px;
+  top: 70px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.boldSearch {
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+  top: 103px;
+  right: 50px;
+}
+
+.search-field {
+  width: 100%;
+  padding: 8px 8px 10px 15px;
+  border: none;
+  border-radius: 5px;
+  outline: solid 1px grey;
+  background-color: #f9f6f2;
+  height: 30px;
+}
+
+.nav-buttons {
+  background-color: #f9f6f2;
+  position: absolute;
+  bottom: 100px;
+  right: 70px;
+}
+
+.search-button {
+  background: transparent;
+  border: none;
+  outline: none;
+  margin-left: -33px;
+}
+
+.search-button img {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+
+.genesysSearch {
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+  top: 103px;
+  right: 50px;
+}
+
+#bold-table, #genesys-table {
+  width: 100%;
+  display: table;
+}
+
+#resp-table-header {
+  display: table-header-group;
+  background-color: #f9f6f2;
+}
+
+.table-header-cell {
+  display: table-cell;
+  padding: 10px;
+  border-bottom: 1px;
+  font-size: medium;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  border-bottom: 1px solid grey;
+}
+
+#folderLogo {
+  height: 20px;
+  width: 20px;
 }
