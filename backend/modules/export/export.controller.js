@@ -1,6 +1,7 @@
 import { findAll } from "./export.service.js";
 import * as fs from "fs";
 import { readAllSavedMessages } from "../transformation/transform.service.js";
+import { mockObject } from "../../helpers/mockResponse.js";
 const regexContainsNumbersOnly = /^\d+$/;
 
 export const getAllCannedMessages = async (req, res) => {
@@ -21,14 +22,40 @@ export const getAllCannedMessages = async (req, res) => {
         if (err) throw err;
         console.log("Data has been written successfully");
       });
+      console.log(joinNames(response));
       //const savedResponse = await saveResponse(response);
       //console.log(savedResponse);
-      const getBack = readAllSavedMessages();
-      console.log(getBack);
+      //const getBack = readAllSavedMessages();
+      //console.log(getBack);
       const result = await res.send(response);
+      const ArrayOfNames = joinNames(response);
+      return ArrayOfNames;
     } catch (error) {
       console.log(error);
       res.status(500).send({ error: "Error 500" });
     }
   }
 };
+
+function* flattenNames({ name = "", folders = [], items = [] }) {
+  yield [name];
+  for (const x of [...folders, ...items]) {
+    for (const path of flattenNames(x)) {
+      yield [name, ...path];
+    }
+  }
+}
+
+function joinNames(data) {
+  let arr = [];
+  for (const path of flattenNames(data)) {
+    arr.push(path.join("/"));
+  }
+  arr.shift();
+  let newArr = [];
+  for (const str of arr) {
+    const newStr = str.split("/").pop();
+    newArr.push(newStr);
+  }
+  return newArr;
+}

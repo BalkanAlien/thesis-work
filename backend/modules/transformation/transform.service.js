@@ -6,7 +6,7 @@ export const readAllSavedMessages = () => {
     if (err) console.log("Error reading file: ", err);
     try {
       const convertedResponse = JSON.parse(jsonString);
-      console.log(createSimplifiedResponse(convertedResponse));
+      //console.log(createSimplifiedResponse(convertedResponse));
       //console.log(createLibraries(convertedResponse));
       //joinText(convertedResponse);
       //console.log("text" + createTexts(mockObject));
@@ -14,7 +14,7 @@ export const readAllSavedMessages = () => {
       //console.log(traverse(mockObject, ""));
       //console.log(joinText(mockObject));
       //console.log(joinItemIds(convertedResponse));
-      //console.log(joinFolderIds(mockObject));
+      console.log(joinFolderIds(mockObject));
       //console.log(joinItemIds(convertedResponse));
       return convertedResponse;
     } catch (err) {
