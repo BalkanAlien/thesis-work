@@ -2,13 +2,20 @@ import "dotenv/config"; //loads environment variables
 import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
+import cors from "cors";
 import { getAllCannedMessages } from "./modules/export/export.controller.js";
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(
+  cors({
+    allowedHeaders: ["Content-Type"],
+    origin: "*",
+    preflightContinue: true,
+  })
+);
 mongoose.connect("mongodb://0.0.0.0:27017/testdb");
 
 const db = mongoose.connection;
