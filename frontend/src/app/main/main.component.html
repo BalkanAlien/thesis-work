@@ -9,25 +9,24 @@
     </button>
   </div>
   <div class="child"> 
-    <div id="bold-table">
-    <div id="resp-table-header">
-      <div class="table-header-cell">
-        <input type="checkbox" style="pointer-events:none">
-      </div>
-      <div class="table-header-cell">
-        <img id="folderLogo" src="../../assets/images/folder.png">
-      </div>
-      <div class="table-header-cell">
-        Channel
-      </div>
-      <div class="table-header-cell">
-        Content
-      </div>
-      <div class="table-header-cell">
-        Modified
-      </div>
-    </div>
-  </div>
+    <table>
+      <thead> 
+        <th><input type="checkbox" style="pointer-events:none"></th>
+        <th><img id="folderLogo" src="../../assets/images/folder.png"></th>
+        <th>Channel</th>
+        <th>Content</th>
+        <th>Modified</th>
+      </thead>
+    <tbody>
+      <tr *ngFor="let element of ArrayOfMessages">
+        <td><input type="checkbox"></td>
+        <td></td>
+        <td>element</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   </div>
   <div class="nav-buttons">
     <button>&lt;&lt;</button>
@@ -50,28 +49,19 @@
     </button>
   </div>
   <div class="child2">
-    <div id="genesys-table">
-      <div id="resp-table-header">
-        <div class="table-header-cell">
-          <input type="checkbox" style="pointer-events:none">
-        </div>
-        <div class="table-header-cell">
-          <img id="folderLogo" src="../../assets/images/folder.png">
-        </div>
-        <div class="table-header-cell">
-          Name
-        </div>
-        <div class="table-header-cell">
-          Content
-        </div>
-        <div class="table-header-cell">
-          Date created
-        </div>
-        <div class="table-header-cell">
-          Actions
-        </div>
-      </div>
-    </div>
+    <table>
+      <thead> 
+        <th><input type="checkbox" style="pointer-events:none"></th>
+        <th><img id="folderLogo" src="../../assets/images/folder.png"></th>
+        <th>Name</th>
+        <th>Content</th>
+        <th>Date created</th>
+        <th>Actions</th>
+      </thead>
+    <tbody>
+    
+    </tbody>
+  </table>
   </div>
   <div class="nav-buttons">
     <button>&lt;&lt;</button>

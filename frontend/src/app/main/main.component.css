@@ -121,22 +121,21 @@
   display: table;
 }
 
-#resp-table-header {
-  display: table-header-group;
-  background-color: #f9f6f2;
-}
-
-.table-header-cell {
-  display: table-cell;
-  padding: 10px;
-  border-bottom: 1px;
-  font-size: medium;
-  font-family: 'Times New Roman', Times, serif;
-  font-weight: bold;
-  border-bottom: 1px solid grey;
-}
 
 #folderLogo {
   height: 20px;
   width: 20px;
 }
+
+table {
+  margin: 0px;
+  width: 100%;
+  font-size: medium;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+thead {
+  font-weight: bold;
+  background: #e8e7e1;
+}
+

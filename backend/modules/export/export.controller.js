@@ -22,13 +22,13 @@ export const getAllCannedMessages = async (req, res) => {
         if (err) throw err;
         console.log("Data has been written successfully");
       });
-      console.log(joinNames(response));
       //const savedResponse = await saveResponse(response);
       //console.log(savedResponse);
       //const getBack = readAllSavedMessages();
       //console.log(getBack);
-      const result = await res.send(response);
       const ArrayOfNames = joinNames(response);
+      const result = await res.send(ArrayOfNames); //sending the data to my frontend
+      console.log(ArrayOfNames);
       return ArrayOfNames;
     } catch (error) {
       console.log(error);
