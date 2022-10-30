@@ -143,6 +143,7 @@ function joinItemsArray(data) {
       itemFolderId: itemFolderIds[i],
       name: itemNames[i],
       text: itemTexts[i],
+      isFolder: false,
     };
     objects.push(arrElem);
   }
@@ -222,6 +223,7 @@ function joinFoldersArray(data) {
       id: folderIds[i],
       name: folderNames[i],
       parentId: parentIds[i],
+      isFolder: true,
     };
     objects.push(arrElem);
   }

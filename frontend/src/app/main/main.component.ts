@@ -11,6 +11,7 @@ import { GetMessagesService } from './get-messages.service';
 export class MainComponent implements OnInit {
   
   ArrayOfMessages: Array<any> = [];
+  Roots: Array<any> = [];
   constructor(private gms: GetMessagesService) { }
 
   ngOnInit(): void {
@@ -23,5 +24,13 @@ export class MainComponent implements OnInit {
       console.log(response);
       this.ArrayOfMessages = response;
     }); 
+    /*for(let i=0; i<this.ArrayOfMessages.length; i++) {
+      if(this.ArrayOfMessages[i].parentId == null || this.ArrayOfMessages[i].folderId == null) {
+        this.Roots.push(this.ArrayOfMessages[i]);
+      }
+    }
+    console.log(this.Roots);*/
   }
+
+
 }

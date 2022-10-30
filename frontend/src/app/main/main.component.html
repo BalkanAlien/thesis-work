@@ -20,8 +20,8 @@
     <tbody>
       <tr *ngFor="let element of ArrayOfMessages">
         <td><input type="checkbox"></td>
-        <td></td>
-        <td>{{element}}</td>
+        <td id="folder" *ngIf="element.isFolder == true"><img id="folderLogo" src="../../assets/images/folder.png"></td>
+        <td>{{element.name}}</td>
         <td></td>
         <td></td>
       </tr>
@@ -29,13 +29,13 @@
   </table>
   </div>
   <div class="nav-buttons">
-    <button>&lt;&lt;</button>
+    <button disabled>&lt;&lt;</button>
     &nbsp;
-    <button>&lt;</button>
+    <button disabled>&lt;</button>
     &nbsp;
-    <button>></button>
+    <button disabled>></button>
     &nbsp;
-    <button>>></button>
+    <button disabled>>></button>
   </div>
   <button class="migratebutton">Migrate selected</button>
 </div>
@@ -56,7 +56,6 @@
         <th>Name</th>
         <th>Content</th>
         <th>Date created</th>
-        <th>Actions</th>
       </thead>
     <tbody>
     
@@ -64,13 +63,13 @@
   </table>
   </div>
   <div class="nav-buttons">
-    <button>&lt;&lt;</button>
+    <button disabled>&lt;&lt;</button>
     &nbsp;
-    <button>&lt;</button>
+    <button disabled>&lt;</button>
     &nbsp;
-    <button>></button>
+    <button disabled>></button>
     &nbsp;
-    <button>>></button>
+    <button disabled>>></button>
   </div>
   <button class="importselectedbutton">Import selected</button>
   <button class="importbutton">Import all</button>
