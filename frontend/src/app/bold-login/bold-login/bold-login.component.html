@@ -1,8 +1,12 @@
 <div>
+  <form [formGroup]="boldLoginForm">
   <img src="../../assets/images/boldLogo.png"/>
   <p>API Key</p>
-  <input>
+  <input formControlName="apiKey">
+  <br>
+  <span style="color: red" *ngIf="apiKey && apiKey.invalid && apiKey.touched">Invalid API Key</span>
   <br>
   <br>
-  <button>Continue</button>
+  <button [disabled]="boldLoginForm.invalid" [routerLink]="['../export']">Continue</button>
+</form>
 </div>

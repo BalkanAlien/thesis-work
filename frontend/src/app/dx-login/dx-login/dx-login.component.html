@@ -15,6 +15,6 @@
 <span style="color: red" *ngIf="org && org.invalid && org.touched">Unvalid organization name</span>
 <br>
 <br>
-<button #button [disabled]="dxloginForm.invalid">Log In</button>
+<button #button [disabled]="dxloginForm.invalid" [routerLink]="['./bold']">Log In</button>
     </form>
 </div>

@@ -8,8 +8,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class DxLoginComponent implements OnInit {
 
-  constructor() { }
-
   ngOnInit(): void {
   }
 
