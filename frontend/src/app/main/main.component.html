@@ -12,18 +12,18 @@
     <table>
       <thead> 
         <th><input type="checkbox" style="pointer-events:none"></th>
-        <th><img id="folderLogo" src="../../assets/images/folder.png"></th>
         <th>Channel</th>
         <th>Content</th>
         <th>Modified</th>
+        <th><img id="folderLogo" src="../../assets/images/folder.png"></th>
       </thead>
     <tbody>
       <tr *ngFor="let element of ArrayOfMessages">
         <td><input type="checkbox"></td>
-        <td id="folder" *ngIf="element.isFolder == true"><img id="folderLogo" src="../../assets/images/folder.png"></td>
         <td>{{element.name}}</td>
         <td></td>
         <td></td>
+        <td id="folder" *ngIf="element.isFolder == true"><img id="folderLogo" src="../../assets/images/folder.png"></td>
       </tr>
     </tbody>
   </table>
@@ -52,10 +52,10 @@
     <table>
       <thead> 
         <th><input type="checkbox" style="pointer-events:none"></th>
-        <th><img id="folderLogo" src="../../assets/images/folder.png"></th>
         <th>Name</th>
         <th>Content</th>
         <th>Date created</th>
+        <th><img id="folderLogo" src="../../assets/images/folder.png"></th>
       </thead>
     <tbody>
     
