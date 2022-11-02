@@ -27,16 +27,14 @@ export const getAllCannedMessages = async (req, res) => {
       //console.log(savedResponse);
       //const getBack = readAllSavedMessages();
       //console.log(getBack);
-      getItemIds(response);
-      getItemFolderIds(response);
-      getItemNames(response);
-      getItemText(response);
+      // getItemIds(response);
+      // getItemFolderIds(response);
+      // getItemNames(response);
+      // getItemText(response);
       let foldersArray = joinFoldersArray(response);
       let itemsArray = joinItemsArray(response);
       let array = foldersArray.concat(itemsArray);
       console.log(array);
-      console.log("messages: " + countMessagesInFolder(response));
-      console.log("subfolders: " + countSubfoldersInFolder(response));
       const result = await res.send(array); //sending the data to my frontend
       //console.log(rootFolders);
       return array;
@@ -238,6 +236,7 @@ function joinFoldersArray(data) {
     };
     objects.push(arrElem);
   }
+  objects.shift();
   return objects;
 }
 
