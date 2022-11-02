@@ -1,6 +1,7 @@
 import { findAll } from "./export.service.js";
 import * as fs from "fs";
 import { readAllSavedMessages } from "../transformation/transform.service.js";
+import { Console, count } from "console";
 
 const regexContainsNumbersOnly = /^\d+$/;
 
@@ -26,10 +27,16 @@ export const getAllCannedMessages = async (req, res) => {
       //console.log(savedResponse);
       //const getBack = readAllSavedMessages();
       //console.log(getBack);
+      getItemIds(response);
+      getItemFolderIds(response);
+      getItemNames(response);
+      getItemText(response);
       let foldersArray = joinFoldersArray(response);
       let itemsArray = joinItemsArray(response);
       let array = foldersArray.concat(itemsArray);
       console.log(array);
+      console.log("messages: " + countMessagesInFolder(response));
+      console.log("subfolders: " + countSubfoldersInFolder(response));
       const result = await res.send(array); //sending the data to my frontend
       //console.log(rootFolders);
       return array;
@@ -218,14 +225,50 @@ function joinFoldersArray(data) {
   let folderIds = getFolderIds(data);
   let folderNames = getFolderNames(data);
   let parentIds = getFolderParentIds(data);
+  let countMessages = countMessagesInFolder(data);
+  let countSubfolders = countSubfoldersInFolder(data);
   for (let i = 0; i < folderIds.length; i++) {
     let arrElem = {
       id: folderIds[i],
       name: folderNames[i],
       parentId: parentIds[i],
       isFolder: true,
+      messagesCount: countMessages[i],
+      subfoldersCount: countSubfolders[i],
     };
     objects.push(arrElem);
   }
   return objects;
+}
+
+function countMessagesInFolder(data) {
+  getItemFolderIds(data);
+  let counts = [];
+  let folderIds = getFolderIds(data);
+  for (let i = 0; i < folderIds.length; i++) {
+    let count = 0;
+    for (let j = 0; j < itemFolderIds.length; j++) {
+      if (folderIds[i] == itemFolderIds[j]) {
+        count++;
+      }
+    }
+    counts.push(count);
+  }
+  return counts;
+}
+
+function countSubfoldersInFolder(data) {
+  let counts = [];
+  let folderIds = getFolderIds(data);
+  let parentIds = getFolderParentIds(data);
+  for (let i = 0; i < folderIds.length; i++) {
+    let count = 0;
+    for (let j = 0; j < parentIds.length; j++) {
+      if (folderIds[i] == parentIds[j]) {
+        count++;
+      }
+    }
+    counts.push(count);
+  }
+  return counts;
 }

@@ -14,15 +14,13 @@
         <th><input type="checkbox" style="pointer-events:none"></th>
         <th>Channel</th>
         <th>Content</th>
-        <th>Modified</th>
         <th><img id="folderLogo" src="../../assets/images/folder.png"></th>
       </thead>
     <tbody>
       <tr *ngFor="let element of ArrayOfMessages">
         <td><input type="checkbox"></td>
         <td>{{element.name}}</td>
-        <td></td>
-        <td></td>
+        <td class="ellipsis" *ngIf="element.isFolder == false">{{element.text}}</td>
         <td id="folder" *ngIf="element.isFolder == true"><img id="folderLogo" src="../../assets/images/folder.png"></td>
       </tr>
     </tbody>

@@ -139,3 +139,9 @@ thead {
   background: #e8e7e1;
 }
 
+.ellipsis {
+  max-width: 40px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
