@@ -236,6 +236,11 @@ function joinFoldersArray(data) {
     };
     objects.push(arrElem);
   }
+  for (let i = 0; i < objects.length; i++) {
+    if (objects[i].parentId == '') {
+      objects[i].parentId = null;
+    }
+  }
   objects.shift();
   return objects;
 }
