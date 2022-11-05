@@ -1,0 +1,78 @@
+<div class="parent">
+    <div class="container">
+      <img class="boldLogo" src="../../assets/images/boldLogo.png"/>
+      <p class="boldText">Please select the canned messages you want to import to Genesys DX.</p>
+      <div class="boldSearch">
+        <input type="search" placeholder="Search" class="search-field"/>
+        <button type="submit" class="search-button">
+          <img src="../../assets/images/search.png">
+        </button>
+      </div>
+      <div class="child"> 
+        <table>
+          <thead> 
+            <th><input type="checkbox" style="pointer-events:none"></th>
+            <th>Channel</th>
+            <th>Content</th>
+            <th><img id="folderLogo" src="../../assets/images/folder.png"></th>
+          </thead>
+        <tbody>
+            <tr *ngFor="let element of ArrayOfMessages">
+              <ng-container *ngIf="element.parentId=='3206824598737435' || element.itemFolderId=='3206824598737435'">
+              <td><input type="checkbox"></td>
+              <td>{{element.name}}</td>
+              <td class="ellipsis" *ngIf="element.isFolder == false; else show">{{element.text}}</td>
+              <ng-template #show>{{element.subfoldersCount}} folders, {{element.messagesCount}} messages</ng-template>
+              <td id="folder" [routerLink]="['Subfolder']" *ngIf="element.isFolder == true"><img id="folderLogo" src="../../assets/images/folder.png"></td>
+            </ng-container>
+            </tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="nav-buttons">
+        <button disabled>&lt;&lt;</button>
+        &nbsp;
+        <button disabled>&lt;</button>
+        &nbsp;
+        <button disabled>></button>
+        &nbsp;
+        <button disabled>>></button>
+      </div>
+      <button class="migratebutton">Migrate selected</button>
+    </div>
+      <div class="container2">
+      <img class="genesysLogo" src="../../assets/images/genesysLogo.png"/>
+      <p class="genesysText">Your imported messages will appear here.</p>
+      <div class="genesysSearch">
+        <input type="search" placeholder="Search" class="search-field"/>
+        <button type="submit" class="search-button">
+          <img src="../../assets/images/search.png">
+        </button>
+      </div>
+      <div class="child2">
+        <table>
+          <thead> 
+            <th><input type="checkbox" style="pointer-events:none"></th>
+            <th>Name</th>
+            <th>Content</th>
+            <th>Date created</th>
+            <th><img id="folderLogo" src="../../assets/images/folder.png"></th>
+          </thead>
+        <tbody>
+        
+        </tbody>
+      </table>
+      </div>
+      <div class="nav-buttons">
+        <button disabled>&lt;&lt;</button>
+        &nbsp;
+        <button disabled>&lt;</button>
+        &nbsp;
+        <button disabled>></button>
+        &nbsp;
+        <button disabled>>></button>
+      </div>
+      <button class="importselectedbutton">Import selected</button>
+      <button class="importbutton">Import all</button>
+    </div>
+    </div>
