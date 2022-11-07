@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetMessagesService } from './get-messages.service';
+import { GetTransformationsService } from './get-transformations.service';
 
 @Component({
   selector: 'app-main',
@@ -11,10 +12,12 @@ import { GetMessagesService } from './get-messages.service';
 export class MainComponent implements OnInit {
   
   ArrayOfMessages: Array<any> = [];
-  constructor(private gms: GetMessagesService) { }
+  TransformedMessages: Array<any> = [];
+  constructor(private gms: GetMessagesService, private tms: GetTransformationsService) { }
 
   ngOnInit(): void {
     this.showMessages();
+    this.showTransformedMessages();
   }
 
   showMessages() {
@@ -25,4 +28,11 @@ export class MainComponent implements OnInit {
     });
   }
 
+  showTransformedMessages() {
+    this.tms.getTransformedCannedMessages(2307475884, '2307475884%3A3250042652855494%3AT2vPmE97qolpOd78wC6vJtxMkCCI7Rd%2B%3Aalphado1')
+    .subscribe((response: any) => {
+      console.log(response);
+      this.TransformedMessages = response;
+    });
+  }
 }
