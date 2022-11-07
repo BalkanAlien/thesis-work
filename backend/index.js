@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import cors from "cors";
 import { getAllCannedMessages } from "./modules/export/export.controller.js";
+import { getAllTransformedCannedMessages } from "./modules/import/import.service.js";
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -31,6 +32,8 @@ db.once("open", () => {
 app.use(express.json()); //recognize incoming request as JSON object
 
 app.route("/export").get(getAllCannedMessages);
+
+app.route("/import").get(getAllTransformedCannedMessages);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

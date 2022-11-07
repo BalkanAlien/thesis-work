@@ -111,7 +111,7 @@ function joinText(data) {
   return arrOfText;
 }
 
-function createLibraries(data) {
+export const createLibraries = (data) => {
   let libraries = [];
   // here i create an array of subfolder names
   const arrOfSubfolderNames = joinFolders(data);
@@ -131,16 +131,17 @@ function createLibraries(data) {
     let arrObject = {
       id: arrOfSubfoldersNamesAndIds[i],
       name: arrOfSubfolderNames[i],
+      isLibrary: true,
       //selfUri: "",
     };
     libraries.push(arrObject);
   }
   return libraries;
-}
+};
 
 //creating texts
 const isHTML = RegExp.prototype.test.bind(/(<([^>]+)>)/i);
-function createTexts(data) {
+export const createTexts = (data) => {
   let texts = [];
   const arrOfTexts = joinText(data);
   for (let i = 0; i < arrOfTexts.length; i++) {
@@ -154,9 +155,9 @@ function createTexts(data) {
     texts.push(textObject);
   }
   return texts;
-}
+};
 
-function createSimplifiedResponse(data) {
+export const createSimplifiedResponse = (data) => {
   let simplifiedItems = [];
   const arrOfText = joinText(data);
   let arrOfItemIds = getItemIds(data);
@@ -166,8 +167,14 @@ function createSimplifiedResponse(data) {
       id: arrOfItemIds[i],
       text: arrOfText[i],
       library: arrOfFolderIds[i],
+      isLibrary: false,
     };
     simplifiedItems.push(simpleResponse);
   }
   return simplifiedItems;
-}
+};
+
+export const mergeLibrariesAndResponses = (data) => {
+  let merged = createLibraries(data).concat(createSimplifiedResponse(data));
+  return merged;
+};

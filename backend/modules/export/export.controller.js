@@ -1,7 +1,5 @@
 import { findAll } from "./export.service.js";
 import * as fs from "fs";
-import { readAllSavedMessages } from "../transformation/transform.service.js";
-import { Console, count } from "console";
 
 const regexContainsNumbersOnly = /^\d+$/;
 
@@ -35,7 +33,7 @@ export const getAllCannedMessages = async (req, res) => {
       let itemsArray = joinItemsArray(response);
       let array = foldersArray.concat(itemsArray);
       console.log(array);
-      const result = await res.send(array); //sending the data to my frontend
+      const result = await res.send(array);
       //console.log(rootFolders);
       return array;
     } catch (error) {
@@ -237,7 +235,7 @@ function joinFoldersArray(data) {
     objects.push(arrElem);
   }
   for (let i = 0; i < objects.length; i++) {
-    if (objects[i].parentId == '') {
+    if (objects[i].parentId == "") {
       objects[i].parentId = null;
     }
   }
