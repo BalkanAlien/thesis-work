@@ -36,7 +36,7 @@
     &nbsp;
     <button disabled>>></button>
   </div>
-  <button class="migratebutton">Migrate selected</button>
+  <button class="migratebutton" (click)="showTransformedMessages()">Migrate selected</button>
 </div>
   <div class="container2">
   <img class="genesysLogo" src="../../assets/images/genesysLogo.png"/>
@@ -53,11 +53,15 @@
         <th><input type="checkbox" style="pointer-events:none"></th>
         <th>Name</th>
         <th>Content</th>
-        <th>Date created</th>
         <th><img id="folderLogo" src="../../assets/images/folder.png"></th>
       </thead>
     <tbody>
-    
+      <tr *ngFor="let element of TransformedMessages">
+        <td><input type="checkbox"></td>
+        <td>{{element.name}}</td>
+        <ng-template #show>{{element.subfoldersCount}} folders, {{element.messagesCount}} messages</ng-template>
+        <td id="folder" *ngIf="element.isFolder == true"><img id="folderLogo" src="../../assets/images/folder.png"></td>
+      </tr>
     </tbody>
   </table>
   </div>
