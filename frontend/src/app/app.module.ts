@@ -8,9 +8,6 @@ import { MainComponent } from './main/main.component';
 import { DxLoginComponent } from './dx-login/dx-login/dx-login.component';
 import { BoldLoginComponent } from './bold-login/bold-login/bold-login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TestfolderComponent } from './main/testfolder/testfolder.component';
-import { SubfolderComponent } from './main/subfolder/subfolder.component';
-import { InterestingComponent } from './main/interesting/interesting.component';
 
 @NgModule({
   declarations: [
@@ -18,9 +15,6 @@ import { InterestingComponent } from './main/interesting/interesting.component';
     MainComponent,
     DxLoginComponent,
     BoldLoginComponent,
-    TestfolderComponent,
-    SubfolderComponent,
-    InterestingComponent,
   ],
   imports: [
     BrowserModule,

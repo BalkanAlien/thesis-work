@@ -150,6 +150,11 @@ function joinItemsArray(data) {
     };
     objects.push(arrElem);
   }
+  for (let i = 0; i < objects.length; i++) {
+    if (objects[i].itemFolderId == null) {
+      objects[i].itemFolderId = "";
+    }
+  }
   return objects;
 }
 
@@ -236,7 +241,7 @@ function joinFoldersArray(data) {
   }
   for (let i = 0; i < objects.length; i++) {
     if (objects[i].parentId == "") {
-      objects[i].parentId = null;
+      objects[i].parentId = "";
     }
   }
   objects.shift();

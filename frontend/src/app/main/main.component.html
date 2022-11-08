@@ -17,14 +17,12 @@
         <th><img id="folderLogo" src="../../assets/images/folder.png"></th>
       </thead>
     <tbody>
-        <tr *ngFor="let element of ArrayOfMessages">
-          <ng-container *ngIf="(element.isFolder==true && element.parentId==null) || (element.isFolder==false && element.itemFolderId==null)">
+        <tr *ngFor="let element of MessagesSent">
           <td><input type="checkbox"></td>
           <td>{{element.name}}</td>
           <td class="ellipsis" *ngIf="element.isFolder == false; else show">{{element.text}}</td>
           <ng-template #show>{{element.subfoldersCount}} folders, {{element.messagesCount}} messages</ng-template>
-          <td [routerLink]="['Testfolder']" id="folder" *ngIf="element.isFolder == true"><img id="folderLogo" src="../../assets/images/folder.png"></td>
-        </ng-container>
+          <td (click)="sendMessages(element.id)" id="folder" *ngIf="element.isFolder == true"><img id="folderLogo" src="../../assets/images/folder.png"></td>
         </tr>
     </tbody>
   </table>
