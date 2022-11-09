@@ -136,6 +136,10 @@ export const createLibraries = (data) => {
     };
     libraries.push(arrObject);
   }
+  let responses = createSimplifiedResponse(data);
+  libraries = libraries.filter(
+    (lib) => !responses.find((re) => re.id === lib.id)
+  );
   return libraries;
 };
 

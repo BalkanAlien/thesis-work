@@ -21,9 +21,9 @@ export const getAllTransformedCannedMessages = async (req, res) => {
   } else {
     try {
       const response = await findAll(accountId, apiKey);
-      const libraries = createLibraries(response);
-      const texts = createTexts(response);
-      const resp = createSimplifiedResponse(response);
+      // const libraries = createLibraries(response);
+      //const texts = createTexts(response);
+      // const resp = createSimplifiedResponse(response);
       console.log("MERGED:");
       console.log(mergeLibrariesAndResponses(response));
       //console.log(libraries);
