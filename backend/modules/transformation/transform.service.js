@@ -33,6 +33,24 @@ function* flattenFolders({ name = "", folders = [], items = [] }) {
   }
 }
 
+let itemFolderIds = [];
+function getItemFolderIds(obj, parent) {
+  if (obj === null) return;
+  if (Array.isArray(obj)) {
+    for (const item of obj) {
+      getItemFolderIds(item, parent);
+    }
+  } else if (typeof obj === "object") {
+    if (parent === "items") {
+      itemFolderIds.push(obj.folderId);
+    } else {
+      for (const [key, value] of Object.entries(obj)) {
+        getItemFolderIds(value, key);
+      }
+    }
+  }
+}
+
 //connects the subfolders paths with /
 function joinFolders(data) {
   let arr = [];
@@ -111,11 +129,33 @@ function joinText(data) {
   return arrOfText;
 }
 
+function* flattenIds({ id = "", folders = [] }) {
+  yield [id];
+  for (const x of [...folders]) {
+    for (const path of flattenIds(x)) {
+      yield [id, ...path];
+    }
+  }
+}
+
+function getFolderIds(data) {
+  let arr = [];
+  for (const path of flattenIds(data)) {
+    arr.push(path.join(" "));
+  }
+  let newArr = [];
+  for (const str of arr) {
+    newArr.push(str.split(" ").pop());
+  }
+  return newArr;
+}
+
 export const createLibraries = (data) => {
   let libraries = [];
   // here i create an array of subfolder names
   const arrOfSubfolderNames = joinFolders(data);
   const arrOfSubfoldersNamesAndIds = joinFoldersAndIds(data);
+
   //an array of subfolders ids
   for (let i = 0; i < arrOfSubfoldersNamesAndIds.length; i++) {
     arrOfSubfoldersNamesAndIds[i] = arrOfSubfoldersNamesAndIds[i].substring(
@@ -140,6 +180,19 @@ export const createLibraries = (data) => {
   libraries = libraries.filter(
     (lib) => !responses.find((re) => re.id === lib.id)
   );
+  let counts = [];
+  for (let i = 0; i < libraries.length; i++) {
+    let cnt = 0;
+    for (let j = 0; j < responses.length; j++) {
+      if (libraries[i].id == responses[j].library) {
+        cnt++;
+      }
+    }
+    counts.push(cnt);
+  }
+  for (let i = 0; i < libraries.length; i++) {
+    libraries[i].totalMessages = counts[i];
+  }
   return libraries;
 };
 

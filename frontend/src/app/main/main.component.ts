@@ -47,11 +47,7 @@ export class MainComponent implements OnInit {
     this.tms.getTransformedCannedMessages(2307475884, '2307475884%3A3250042652855494%3AT2vPmE97qolpOd78wC6vJtxMkCCI7Rd%2B%3Aalphado1')
     .subscribe((response: any) => {
       this.TransformedMessages = response;
-      console.log("transformed" + response);
+      console.log(this.TransformedMessages);
     })
   }
-
-  }
-
-  
-
+}
