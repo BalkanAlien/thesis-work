@@ -113,6 +113,25 @@ function getItemIds(obj, parent) {
   return ids;
 }
 
+let names = [];
+function getItemNames(obj, parent) {
+  if (obj === null) return;
+  if (Array.isArray(obj)) {
+    for (const item of obj) {
+      getItemNames(item, parent);
+    }
+  } else if (typeof obj === "object") {
+    if (parent === "items") {
+      names.push(obj.name);
+    } else {
+      for (const [key, value] of Object.entries(obj)) {
+        getItemNames(value, key);
+      }
+    }
+  }
+  return names;
+}
+
 function joinFolderIds(data) {
   let arr = [...flattenFolderIds(data)];
   arr = arr.flat();
@@ -219,14 +238,21 @@ export const createSimplifiedResponse = (data) => {
   const arrOfText = joinText(data);
   let arrOfItemIds = getItemIds(data);
   let arrOfFolderIds = joinFolderIds(data);
+  let arrOfNames = getItemNames(data);
   for (let i = 0; i < arrOfText.length; i++) {
     let simpleResponse = {
       id: arrOfItemIds[i],
+      name: arrOfNames[i],
       text: arrOfText[i],
       library: arrOfFolderIds[i],
       isLibrary: false,
     };
     simplifiedItems.push(simpleResponse);
+  }
+  for (let i = 0; i < simplifiedItems.length; i++) {
+    if (simplifiedItems[i].library == null) {
+      simplifiedItems[i].library = "";
+    }
   }
   return simplifiedItems;
 };
