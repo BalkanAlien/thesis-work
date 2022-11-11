@@ -8,7 +8,6 @@ import { MainComponent } from './main/main.component';
 import { DxLoginComponent } from './dx-login/dx-login/dx-login.component';
 import { BoldLoginComponent } from './bold-login/bold-login/bold-login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
 @NgModule({
   declarations: [
     AppComponent,

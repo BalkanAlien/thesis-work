@@ -18,7 +18,7 @@
       </thead>
     <tbody>
         <tr *ngFor="let element of MessagesSent">
-          <td><input type="checkbox"></td>
+          <td><input (change)="onChange(element)" type="checkbox" value="{{element}}"></td>
           <td>{{element.name}}</td>
           <td class="ellipsis" *ngIf="element.isFolder == false; else show">{{element.text}}</td>
           <ng-template #show>{{element.subfoldersCount}} folders, {{element.messagesCount}} messages</ng-template>
@@ -28,15 +28,12 @@
   </table>
   </div>
   <div class="nav-buttons">
-    <button disabled>&lt;&lt;</button>
+    <button [disabled]="MessagesSent.length===8"(click)="showMessages('')">&lt;&lt;</button>
     &nbsp;
-    <button disabled>&lt;</button>
-    &nbsp;
-    <button disabled>></button>
-    &nbsp;
-    <button disabled>>></button>
+    <button (click)="showMessages('3206824598737435')">>></button>
   </div>
-  <button class="migratebutton" (click)="showTransformedMessages('')">Migrate selected</button>
+  <button class="migratebutton" (click)="showCollectedFromTransformed()">Migrate selected</button>
+  <button class="migrateAllbutton" (click)="showTransformedMessages('')">Migrate all</button>
 </div>
   <div class="container2">
   <img class="genesysLogo" src="../../assets/images/genesysLogo.png"/>
@@ -67,13 +64,9 @@
   </table>
   </div>
   <div class="nav-buttons">
-    <button disabled>&lt;&lt;</button>
+    <button [disabled]="TransformedMessagesSent.length === 10" (click)="showTransformedMessages('')">&lt;&lt;</button>
     &nbsp;
-    <button disabled>&lt;</button>
-    &nbsp;
-    <button disabled>></button>
-    &nbsp;
-    <button disabled>>></button>
+    <button [disabled]="TransformedMessagesSent.length === 1">>></button>
   </div>
   <button class="importselectedbutton">Import selected</button>
   <button class="importbutton">Import all</button>

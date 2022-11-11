@@ -254,6 +254,18 @@ export const createSimplifiedResponse = (data) => {
       simplifiedItems[i].library = "";
     }
   }
+  const isHTML = RegExp.prototype.test.bind(/(<([^>]+)>)/i);
+  for (let i = 0; i < simplifiedItems.length; i++) {
+    if (isHTML(simplifiedItems[i].text)) {
+      simplifiedItems[i].text = simplifiedItems[i].text.replace(
+        /<[^>]*>?/gm,
+        ""
+      );
+    }
+    if (/\r|\n/.exec(simplifiedItems[i].text)) {
+      simplifiedItems[i].text = simplifiedItems[i].text.replace(/\n/g, "");
+    }
+  }
   return simplifiedItems;
 };
 

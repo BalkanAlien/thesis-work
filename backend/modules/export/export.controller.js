@@ -155,6 +155,15 @@ function joinItemsArray(data) {
       objects[i].itemFolderId = "";
     }
   }
+  const isHTML = RegExp.prototype.test.bind(/(<([^>]+)>)/i);
+  for (let i = 0; i < objects.length; i++) {
+    if (isHTML(objects[i].text)) {
+      objects[i].text = objects[i].text.replace(/<[^>]*>?/gm, "");
+    }
+    if (/\r|\n/.exec(objects[i].text)) {
+      objects[i].text = objects[i].text.replace(/\n/g, "");
+    }
+  }
   return objects;
 }
 

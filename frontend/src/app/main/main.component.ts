@@ -16,6 +16,8 @@ export class MainComponent implements OnInit {
   MessagesSent: Array<any> = [];
   TransformedMessages: Array<any> = [];
   TransformedMessagesSent: Array<any> = [];
+  CollectedElements: Array<any> = [];
+  SelectedTransformed: Array<any> = [];
   constructor(private gms: GetMessagesService, private tms: GetTransformationsService) { }
 
   ngOnInit(): void {
@@ -73,4 +75,48 @@ export class MainComponent implements OnInit {
     } 
     console.log(this.TransformedMessagesSent);
   }
+
+  onChange(value: any) : void {
+    if(this.CollectedElements.includes(value)) {
+      this.CollectedElements = this.CollectedElements.filter((item) => item !== value);
+    } else {
+      this.CollectedElements.push(value);
+    }
+    console.log(this.CollectedElements);
+  }
+  
+  //get collected and store transformed  based on collected id = transformed id 
+  showCollectedFromTransformed() {
+    this.tms.getTransformedCannedMessages(2307475884, '2307475884%3A3250042652855494%3AT2vPmE97qolpOd78wC6vJtxMkCCI7Rd%2B%3Aalphado1')
+    .pipe(finalize(() => {
+      for(let collected of this.CollectedElements) {
+        for(let transformed of this.TransformedMessages) {
+          if(collected.id === transformed.id) {
+            this.SelectedTransformed.push(transformed);
+          }
+        }
+      }
+      this.sendSelectedTransformedMessages();
+    }))
+    .subscribe((response: any) => {
+      this.TransformedMessages = response;
+      this.TransformedMessagesSent = this.SelectedTransformed;
+    });
+  }
+
+  sendSelectedTransformedMessages() {
+    this.TransformedMessagesSent = [];
+ //if we are in the root, show every folder and message.library==''
+
+      for(let i = 0; i < this.SelectedTransformed.length; i++) {
+        if(this.SelectedTransformed[i].isLibrary || (!this.SelectedTransformed[i].isLibrary && this.SelectedTransformed[i].library == '')) {
+          this.TransformedMessagesSent.push(this.SelectedTransformed[i]);
+        }
+      }
+
+    //when i click on a folder it will have its id, show only the messages inside
+  
+    console.log(this.TransformedMessagesSent);
+  }
+
 }
