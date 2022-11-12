@@ -1,24 +1,23 @@
-import chai, { assert } from "chai";
+import chai from "chai";
 import chaiHttp from "chai-http";
 import sinon from "sinon";
 import { faker } from "@faker-js/faker";
 import axios from "axios";
 import app from "../index.js";
 import { mockObject } from "../helpers/mockResponse.js";
+import { getStub } from "./export.test.js";
 
 chai.use(chaiHttp);
-chai.use(assert);
 
 const expect = chai.expect;
-export const getStub = sinon.stub(axios, "get");
 
-describe("export controller test", () => {
+describe("import controller test", () => {
   getStub.resolves(Promise.resolve({ data: mockObject }));
 
   it("should return 400 if accountId and apiKey are not specified", (done) => {
     chai
       .request(app)
-      .get("/export")
+      .get("/import")
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res).to.have.status(400);
@@ -76,7 +75,7 @@ describe("export controller test", () => {
   });
 
   it("should return 500 if findAll is rejected", (done) => {
-    axios.get.restore();
+    getStub.restore();
     getStub.throws();
     chai
       .request(app)
