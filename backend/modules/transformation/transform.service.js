@@ -1,21 +1,10 @@
 import * as fs from "fs";
-import { mockObject } from "../../helpers/mockResponse.js";
 
 export const readAllSavedMessages = () => {
   fs.readFile("file.json", "utf-8", (err, jsonString) => {
     if (err) console.log("Error reading file: ", err);
     try {
       const convertedResponse = JSON.parse(jsonString);
-      //console.log(createSimplifiedResponse(convertedResponse));
-      //console.log(createLibraries(convertedResponse));
-      //joinText(convertedResponse);
-      //console.log("text" + createTexts(mockObject));
-      //console.log(storeSubstitutions(convertedResponse));
-      //console.log(traverse(mockObject, ""));
-      //console.log(joinText(mockObject));
-      //console.log(joinItemIds(convertedResponse));
-      console.log(joinFolderIds(mockObject));
-      //console.log(joinItemIds(convertedResponse));
       return convertedResponse;
     } catch (err) {
       console.log("Error parsing JSON string: ", err);
@@ -23,7 +12,6 @@ export const readAllSavedMessages = () => {
   });
 };
 
-//recursive generator function that yields array paths of name attributes
 function* flattenFolders({ name = "", folders = [], items = [] }) {
   yield [name];
   for (const x of [...folders, ...items]) {
@@ -33,25 +21,6 @@ function* flattenFolders({ name = "", folders = [], items = [] }) {
   }
 }
 
-let itemFolderIds = [];
-function getItemFolderIds(obj, parent) {
-  if (obj === null) return;
-  if (Array.isArray(obj)) {
-    for (const item of obj) {
-      getItemFolderIds(item, parent);
-    }
-  } else if (typeof obj === "object") {
-    if (parent === "items") {
-      itemFolderIds.push(obj.folderId);
-    } else {
-      for (const [key, value] of Object.entries(obj)) {
-        getItemFolderIds(value, key);
-      }
-    }
-  }
-}
-
-//connects the subfolders paths with /
 function joinFolders(data) {
   let arr = [];
   for (const path of flattenFolders(data)) {
@@ -61,7 +30,6 @@ function joinFolders(data) {
   return arr;
 }
 
-//recursive generator functions that yields paths of node objects
 function* flat(t = {}) {
   yield [t];
   for (const x of [...(t.folders ?? []), ...(t.items ?? [])])
@@ -135,38 +103,16 @@ function getItemNames(obj, parent) {
 function joinFolderIds(data) {
   let arr = [...flattenFolderIds(data)];
   arr = arr.flat();
-  arr = arr.filter((e) => String(e).trim()); //removing whitespaces
+  arr = arr.filter((e) => String(e).trim());
   return arr;
 }
 
-//returns an array of texts in the canned message
 function joinText(data) {
   let arrOfText = [...flattenText(data)];
   arrOfText = arrOfText.flat();
   arrOfText = arrOfText.filter((e) => String(e).trim());
   console.log(arrOfText);
   return arrOfText;
-}
-
-function* flattenIds({ id = "", folders = [] }) {
-  yield [id];
-  for (const x of [...folders]) {
-    for (const path of flattenIds(x)) {
-      yield [id, ...path];
-    }
-  }
-}
-
-function getFolderIds(data) {
-  let arr = [];
-  for (const path of flattenIds(data)) {
-    arr.push(path.join(" "));
-  }
-  let newArr = [];
-  for (const str of arr) {
-    newArr.push(str.split(" ").pop());
-  }
-  return newArr;
 }
 
 export const createLibraries = (data) => {

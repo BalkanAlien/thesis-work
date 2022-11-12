@@ -1,10 +1,5 @@
 import { findAll } from "../export/export.service.js";
-import {
-  createLibraries,
-  createTexts,
-  createSimplifiedResponse,
-  mergeLibrariesAndResponses,
-} from "../transformation/transform.service.js";
+import { mergeLibrariesAndResponses } from "../transformation/transform.service.js";
 
 const regexContainsNumbersOnly = /^\d+$/;
 
@@ -21,13 +16,8 @@ export const getAllTransformedCannedMessages = async (req, res) => {
   } else {
     try {
       const response = await findAll(accountId, apiKey);
-      // const libraries = createLibraries(response);
-      //const texts = createTexts(response);
-      // const resp = createSimplifiedResponse(response);
       console.log("MERGED:");
       console.log(mergeLibrariesAndResponses(response));
-      //console.log(libraries);
-      //console.log(texts);
       const merged = mergeLibrariesAndResponses(response);
       const result = await res.send(merged);
       return merged;

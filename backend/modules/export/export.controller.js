@@ -21,20 +21,11 @@ export const getAllCannedMessages = async (req, res) => {
         if (err) throw err;
         console.log("Data has been written successfully");
       });
-      //const savedResponse = await saveResponse(response);
-      //console.log(savedResponse);
-      //const getBack = readAllSavedMessages();
-      //console.log(getBack);
-      // getItemIds(response);
-      // getItemFolderIds(response);
-      // getItemNames(response);
-      // getItemText(response);
       let foldersArray = joinFoldersArray(response);
       let itemsArray = joinItemsArray(response);
       let array = foldersArray.concat(itemsArray);
-      console.log(array);
       const result = await res.send(array);
-      //console.log(rootFolders);
+      console.log(array);
       return array;
     } catch (error) {
       console.log(error);
@@ -42,24 +33,6 @@ export const getAllCannedMessages = async (req, res) => {
     }
   }
 };
-
-//we need the messages and folders to show them on the root page
-//folders where parentId = null
-//messages where folderId = null
-
-function* flat(t = {}) {
-  yield [t];
-  for (const x of [...(t.folders ?? [])])
-    for (const path of flat(x)) yield [t, ...path];
-}
-
-function joinFoldersAndMessages(data) {
-  let arr = [];
-  for (const path of flat(data))
-    arr.push(
-      path.map((node) => ` ${node.name ?? " "} ${node.parentId}`).join(" ")
-    );
-}
 
 let itemIds = [];
 function getItemIds(obj, parent) {
