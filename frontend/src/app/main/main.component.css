@@ -59,8 +59,7 @@
 
 .genesysLogo {
   position: absolute;
-  top: -15px;
-  height: 130px;
+  top: 16px;
 }
 
 .boldText, .genesysText {

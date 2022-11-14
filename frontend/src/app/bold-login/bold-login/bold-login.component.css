@@ -27,6 +27,7 @@ button {
     border-left: none;
     font-weight: bold;
     height: 30px;
+    left: 45px;
 }
 
 button:disabled {

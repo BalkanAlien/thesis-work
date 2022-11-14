@@ -2,15 +2,15 @@
     <form [formGroup]="dxloginForm">
 <img src="../../assets/images/genesysLogo.png"/>
 <p>Email-address</p>
-<input type="email" #emailInput formControlName="email">
+<input id="email" type="email" #emailInput formControlName="email">
 <br>
 <span style="color: red" *ngIf="email && email.invalid && email.touched">Invalid email address</span>
 <p>Password</p>
-<input type="password" #passwordInput formControlName="password">
+<input id="password" type="password" #passwordInput formControlName="password">
 <br>
 <span style="color: red" *ngIf="password && password.invalid && password.touched">Invalid password</span>
 <p>Org.</p>
-<input type="text" #orgInput formControlName="org">
+<input id="org" type="text" #orgInput formControlName="org">
 <br>
 <span style="color: red" *ngIf="org && org.invalid && org.touched">Invalid organization name</span>
 <br>

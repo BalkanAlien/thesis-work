@@ -12,6 +12,7 @@ p {
     font-size: 15px;
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
+    position: relative;
 }
 
 button {
@@ -22,6 +23,7 @@ button {
     border-left: none;
     font-weight: bold;
     height: 30px;
+    left: 50px;
 }
 
 button:disabled {

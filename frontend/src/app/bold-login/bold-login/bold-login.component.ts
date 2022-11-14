@@ -15,7 +15,7 @@ export class BoldLoginComponent implements OnInit {
 
   boldLoginForm = new FormGroup({
     apiKey: new FormControl('', [Validators.required])
-  })
+  });
 
   get apiKey() {
     return this.boldLoginForm.get('apiKey');

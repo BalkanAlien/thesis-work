@@ -2,7 +2,7 @@
   <form [formGroup]="boldLoginForm">
   <img src="../../assets/images/boldLogo.png"/>
   <p>API Key</p>
-  <input formControlName="apiKey">
+  <input id=apiKey formControlName="apiKey">
   <br>
   <span style="color: red" *ngIf="apiKey && apiKey.invalid && apiKey.touched">Invalid API Key</span>
   <br>
