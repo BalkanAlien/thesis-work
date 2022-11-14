@@ -18,19 +18,19 @@
       </thead>
     <tbody>
         <tr *ngFor="let element of MessagesSent">
-          <td><input (change)="onChange(element)" type="checkbox" value="{{element}}"></td>
+          <td><input class="pointer" (change)="onChange(element)" type="checkbox" value="{{element}}"></td>
           <td>{{element.name}}</td>
           <td class="ellipsis" *ngIf="element.isFolder == false; else show">{{element.text}}</td>
           <ng-template #show>{{element.subfoldersCount}} folders, {{element.messagesCount}} messages</ng-template>
-          <td (click)="sendMessages(element.id)" id="folder" *ngIf="element.isFolder == true"><img id="folderLogo" src="../../assets/images/folder.png"></td>
+          <td (click)="sendMessages(element.id)" id="folder" *ngIf="element.isFolder == true"><img class="pointer" id="folderLogo" src="../../assets/images/folder.png"></td>
         </tr>
     </tbody>
   </table>
   </div>
   <div class="nav-buttons">
-    <button [disabled]="MessagesSent.length===8"(click)="showMessages('')">&lt;&lt;</button>
+    <button class="pointer" (click)="showMessages('')">&lt;&lt;</button>
     &nbsp;
-    <button (click)="showMessages('3206824598737435')">>></button>
+    <button class="pointer" (click)="showMessages('3206824598737435')">>></button>
   </div>
   <button class="migratebutton" (click)="showCollectedFromTransformed()">Migrate selected</button>
   <button class="migrateAllbutton" (click)="showTransformedMessages('')">Migrate all</button>
@@ -54,19 +54,19 @@
       </thead>
     <tbody>
       <tr *ngFor="let element of TransformedMessagesSent">
-        <td><input type="checkbox"></td>
+        <td><input class="pointer" type="checkbox"></td>
         <td>{{element.name}}</td>
         <td class="ellipsis" *ngIf="element.isLibrary == false; else show">{{element.text}}</td>
         <ng-template #show>{{element.totalMessages}} messages</ng-template>
-        <td (click)="sendTransformedMessages(element.id)" id="folder" *ngIf="element.isLibrary == true"><img id="folderLogo" src="../../assets/images/folder.png"></td>
+        <td (click)="sendTransformedMessages(element.id)" id="folder" *ngIf="element.isLibrary == true"><img class="pointer" id="folderLogo" src="../../assets/images/folder.png"></td>
       </tr>
     </tbody>
   </table>
   </div>
   <div class="nav-buttons">
-    <button [disabled]="TransformedMessagesSent.length === 10" (click)="showTransformedMessages('')">&lt;&lt;</button>
+    <button class="pointer" (click)="showTransformedMessages('')">&lt;&lt;</button>
     &nbsp;
-    <button [disabled]="TransformedMessagesSent.length === 1">>></button>
+    <button class="pointer">>></button>
   </div>
   <button class="importselectedbutton">Import selected</button>
   <button class="importbutton">Import all</button>

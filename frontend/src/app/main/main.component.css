@@ -37,6 +37,7 @@
   border-left: none;
   font-weight: bold;
   height: 30px;
+  cursor: pointer;
 }
 
 .importselectedbutton, .migratebutton {
@@ -48,6 +49,7 @@
   height: 30px;
   background-color: #f9f6f2;
   right: 190px;
+  cursor: pointer;
 }
 
 .boldLogo {
@@ -143,4 +145,8 @@ thead {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.pointer {
+  cursor: pointer;
 }
