@@ -18,6 +18,8 @@ export class MainComponent implements OnInit {
   TransformedMessagesSent: Array<any> = [];
   CollectedElements: Array<any> = [];
   SelectedTransformed: Array<any> = [];
+  OriginalResponse: Array<any> = [];
+
   constructor(private gms: GetMessagesService, private tms: GetTransformationsService) { }
 
   ngOnInit(): void {
@@ -31,6 +33,7 @@ export class MainComponent implements OnInit {
       console.log(response);
       this.ArrayOfMessages = response;
       this.MessagesSent = this.ArrayOfMessages;
+      this.OriginalResponse = response;
     });
     
   }
@@ -177,5 +180,6 @@ export class MainComponent implements OnInit {
     }
     console.log("values " + JSON.stringify(parentFolderMessages));
     this.MessagesSent = parentFolderMessages; 
+    console.log("original " + this.OriginalResponse);
   }
 }

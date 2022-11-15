@@ -52,7 +52,7 @@
   <div class="nav-buttons">
     <button class="pointer" [disabled]="isRootTransformation()" (click)="showTransformedMessages('')">&lt;&lt;</button>
   </div>
-  <button class="importselectedbutton">Import selected</button>
-  <button class="importbutton">Import all</button>
+  <button class="importselectedbutton" [disabled]="TransformedMessages.length==0">Import selected</button>
+  <button class="importbutton" [disabled]="TransformedMessages.length==0">Import all</button>
 </div>
 </div>

@@ -37,7 +37,6 @@
   border-left: none;
   font-weight: bold;
   height: 30px;
-  cursor: pointer;
 }
 
 .importselectedbutton, .migratebutton {
@@ -49,7 +48,20 @@
   height: 30px;
   background-color: #f9f6f2;
   right: 190px;
+}
+
+.migratebutton, .importselectedbutton:enabled, .migrateAllbutton, .importbutton:enabled {
   cursor: pointer;
+}
+
+.importbutton:disabled {
+  background-color: lightblue; 
+  border: 1px solid grey;
+}
+
+.importselectedbutton:disabled {
+  background-color: lightblue;
+  color: white;
 }
 
 .boldLogo {
