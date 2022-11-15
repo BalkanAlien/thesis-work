@@ -24,7 +24,7 @@
   <div class="nav-buttons">
     <button class="pointer" [disabled]="isRootLevel()" (click)="goBack()">&lt;&lt;</button>
   </div>
-  <button class="migratebutton" (click)="showCollectedFromTransformed()">Migrate selected</button>
+  <button class="migratebutton" [disabled]="CollectedElements.length == 0" (click)="showCollectedFromTransformed()">Migrate selected</button>
   <button class="migrateAllbutton" (click)="showTransformedMessages('')">Migrate all</button>
 </div>
   <div class="container2">

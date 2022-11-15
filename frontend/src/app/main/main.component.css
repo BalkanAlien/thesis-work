@@ -50,17 +50,22 @@
   right: 190px;
 }
 
-.migratebutton, .importselectedbutton:enabled, .migrateAllbutton, .importbutton:enabled {
-  cursor: pointer;
+.migratebutton:enabled, .importselectedbutton:enabled, .migrateAllbutton, .importbutton:enabled {
+  cursor:pointer
+}
+.migratebutton:disabled {
+  background-color: grey; 
+  border: 1px solid grey;
+  color: white;
 }
 
 .importbutton:disabled {
-  background-color: lightblue; 
+  background-color: grey; 
   border: 1px solid grey;
 }
 
 .importselectedbutton:disabled {
-  background-color: lightblue;
+  background-color: grey;
   color: white;
 }
 
