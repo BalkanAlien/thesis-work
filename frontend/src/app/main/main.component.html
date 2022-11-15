@@ -22,7 +22,7 @@
   </table>
   </div>
   <div class="nav-buttons">
-    <button class="pointer" (click)="showMessages('')">&lt;&lt;</button>
+    <button class="pointer" [disabled]="isRootLevel()" (click)="goBack()">&lt;&lt;</button>
   </div>
   <button class="migratebutton" (click)="showCollectedFromTransformed()">Migrate selected</button>
   <button class="migrateAllbutton" (click)="showTransformedMessages('')">Migrate all</button>
@@ -50,7 +50,7 @@
   </table>
   </div>
   <div class="nav-buttons">
-    <button class="pointer" (click)="showTransformedMessages('')">&lt;&lt;</button>
+    <button class="pointer" [disabled]="isRootTransformation()" (click)="showTransformedMessages('')">&lt;&lt;</button>
   </div>
   <button class="importselectedbutton">Import selected</button>
   <button class="importbutton">Import all</button>

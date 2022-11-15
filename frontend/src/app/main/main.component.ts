@@ -119,4 +119,63 @@ export class MainComponent implements OnInit {
     console.log(this.TransformedMessagesSent);
   }
 
+  isRootTransformation() {
+    let parentLibrary = false; 
+    if(this.TransformedMessagesSent.length > 0) {
+    for(let i = 0; i < this.TransformedMessagesSent.length; i++) {
+      if(this.TransformedMessagesSent[i].isLibrary == false && this.TransformedMessagesSent[i].library == "") {
+        parentLibrary = true;
+        break;
+      }
+    }
+  }
+  else {
+    parentLibrary = true;
+  }
+    return parentLibrary;
+  }
+
+  isRootLevel() {
+    let parentFolder = false;
+    for(let i = 0; i < this.MessagesSent.length; i++) {
+      if((this.MessagesSent[i].isFolder && this.MessagesSent[i].parentId == "") ||
+      (!this.MessagesSent[i].isFolder && this.MessagesSent[i].itemFolderId == "")) {
+        parentFolder = true;
+        break;
+      }
+    }
+    return parentFolder;
+  }
+
+  goBack() {
+    let parentIds = [];
+    let values = [];
+    let parentFolderMessages = [];
+    for(let i = 0; i < this.MessagesSent.length; i++) {
+      if(this.MessagesSent[i].isFolder) {
+        parentIds.push(this.MessagesSent[i].parentId);
+      }
+      else {
+        parentIds.push(this.MessagesSent[i].itemFolderId);
+      }
+    }
+    console.log("parentIds " + parentIds);
+    for(let i = 0; i < this.ArrayOfMessages.length; i++) {
+      if((this.ArrayOfMessages[i].isFolder && parentIds.includes(this.ArrayOfMessages[i].id)) ||
+      (!this.ArrayOfMessages[i].isFolder && parentIds.includes(this.ArrayOfMessages[i].id))) {
+         values.push(this.ArrayOfMessages[i]);
+      }
+    }
+    for(let i = 0; i < values.length; i++){
+      let valueParentId = values[i].parentId;
+      for(let i = 0; i < this.ArrayOfMessages.length; i++) {
+        if((this.ArrayOfMessages[i].isFolder && this.ArrayOfMessages[i].parentId == valueParentId) ||
+        (!this.ArrayOfMessages[i].isFolder && this.ArrayOfMessages[i].itemFolderId == valueParentId)) {
+          parentFolderMessages.push(this.ArrayOfMessages[i]);
+        }
+      }
+    }
+    console.log("values " + JSON.stringify(parentFolderMessages));
+    this.MessagesSent = parentFolderMessages; 
+  }
 }
