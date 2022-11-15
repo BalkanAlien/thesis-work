@@ -2,12 +2,6 @@
 <div class="container">
   <img class="boldLogo" src="../../assets/images/boldLogo.png"/>
   <p class="boldText">Please select the canned messages you want to import to Genesys DX.</p>
-  <div class="boldSearch">
-    <input type="search" placeholder="Search" class="search-field"/>
-    <button type="submit" class="search-button">
-      <img src="../../assets/images/search.png">
-    </button>
-  </div>
   <div class="child"> 
     <table>
       <thead> 
@@ -29,8 +23,6 @@
   </div>
   <div class="nav-buttons">
     <button class="pointer" (click)="showMessages('')">&lt;&lt;</button>
-    &nbsp;
-    <button class="pointer" (click)="showMessages('3206824598737435')">>></button>
   </div>
   <button class="migratebutton" (click)="showCollectedFromTransformed()">Migrate selected</button>
   <button class="migrateAllbutton" (click)="showTransformedMessages('')">Migrate all</button>
@@ -38,12 +30,6 @@
   <div class="container2">
   <img class="genesysLogo" src="../../assets/images/genesysLogo.png"/>
   <p class="genesysText">Your imported messages will appear here.</p>
-  <div class="genesysSearch">
-    <input type="search" placeholder="Search" class="search-field"/>
-    <button type="submit" class="search-button">
-      <img src="../../assets/images/search.png">
-    </button>
-  </div>
   <div class="child2">
     <table>
       <thead> 
@@ -65,8 +51,6 @@
   </div>
   <div class="nav-buttons">
     <button class="pointer" (click)="showTransformedMessages('')">&lt;&lt;</button>
-    &nbsp;
-    <button class="pointer">>></button>
   </div>
   <button class="importselectedbutton">Import selected</button>
   <button class="importbutton">Import all</button>
