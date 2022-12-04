@@ -40,10 +40,10 @@
       </thead>
     <tbody>
       <tr *ngFor="let element of TransformedMessagesSent">
-        <td><input class="pointer" type="checkbox"></td>
+        <td><input class="pointer" (change)="onChangeGenesys(element)" type="checkbox"></td>
         <td>{{element.name}}</td>
         <td class="ellipsis" *ngIf="element.isLibrary == false; else show">{{element.text}}</td>
-        <ng-template #show>{{element.totalMessages}} messages</ng-template>
+        <ng-template #show>{{element.totalMessages}} responses</ng-template>
         <td (click)="sendTransformedMessages(element.id)" id="folder" *ngIf="element.isLibrary == true"><img class="pointer" id="folderLogo" src="../../assets/images/folder.png"></td>
       </tr>
     </tbody>
@@ -52,7 +52,7 @@
   <div class="nav-buttons">
     <button class="pointer" [disabled]="isRootTransformation()" (click)="showTransformedMessages('')">&lt;&lt;</button>
   </div>
-  <button class="importselectedbutton" [disabled]="TransformedMessages.length==0">Import selected</button>
+  <button class="importselectedbutton" [disabled]="TransformedMessages.length==0 && CheckedElements.length == 0">Import selected</button>
   <button class="importbutton" [disabled]="TransformedMessages.length==0">Import all</button>
 </div>
 </div>

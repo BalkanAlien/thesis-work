@@ -5,6 +5,7 @@ export const readAllSavedMessages = () => {
     if (err) console.log("Error reading file: ", err);
     try {
       const convertedResponse = JSON.parse(jsonString);
+      console.log(convertedResponse);
       return convertedResponse;
     } catch (err) {
       console.log("Error parsing JSON string: ", err);
@@ -21,14 +22,14 @@ function* flattenFolders({ name = "", folders = [], items = [] }) {
   }
 }
 
-function joinFolders(data) {
+export const joinFolders = (data) => {
   let arr = [];
   for (const path of flattenFolders(data)) {
     arr.push(path.join("/"));
   }
   arr.shift();
   return arr;
-}
+};
 
 function* flat(t = {}) {
   yield [t];
@@ -36,13 +37,13 @@ function* flat(t = {}) {
     for (const path of flat(x)) yield [t, ...path];
 }
 
-function joinFoldersAndIds(data) {
+export const joinFoldersAndIds = (data) => {
   let arr = [];
   for (const path of flat(data))
     arr.push(path.map((node) => `${node.name ?? " "}${node.id}`).join(" "));
   arr.shift();
   return arr;
-}
+};
 
 function* flattenText({ folders = [], items = [], text = "" }) {
   yield [text];
@@ -63,7 +64,7 @@ function* flattenFolderIds({ folders = [], items = [], folderId = " " }) {
 }
 
 let ids = [];
-function getItemIds(obj, parent) {
+export const getItemIds = (obj, parent) => {
   if (obj === null) return;
   if (Array.isArray(obj)) {
     for (const item of obj) {
@@ -79,10 +80,10 @@ function getItemIds(obj, parent) {
     }
   }
   return ids;
-}
+};
 
 let names = [];
-function getItemNames(obj, parent) {
+export const getItemNames = (obj, parent) => {
   if (obj === null) return;
   if (Array.isArray(obj)) {
     for (const item of obj) {
@@ -98,22 +99,21 @@ function getItemNames(obj, parent) {
     }
   }
   return names;
-}
+};
 
-function joinFolderIds(data) {
+export const joinFolderIds = (data) => {
   let arr = [...flattenFolderIds(data)];
   arr = arr.flat();
   arr = arr.filter((e) => String(e).trim());
   return arr;
-}
+};
 
-function joinText(data) {
+export const joinText = (data) => {
   let arrOfText = [...flattenText(data)];
   arrOfText = arrOfText.flat();
   arrOfText = arrOfText.filter((e) => String(e).trim());
-  console.log(arrOfText);
   return arrOfText;
-}
+};
 
 export const createLibraries = (data) => {
   let libraries = [];

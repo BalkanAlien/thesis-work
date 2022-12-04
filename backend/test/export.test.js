@@ -10,11 +10,8 @@ chai.use(chaiHttp);
 chai.use(assert);
 
 const expect = chai.expect;
-export const getStub = sinon.stub(axios, "get");
 
 describe("export controller test", () => {
-  getStub.resolves(Promise.resolve({ data: mockObject }));
-
   it("should return 400 if accountId and apiKey are not specified", (done) => {
     chai
       .request(app)
@@ -76,8 +73,6 @@ describe("export controller test", () => {
   });
 
   it("should return 500 if findAll is rejected", (done) => {
-    axios.get.restore();
-    getStub.throws();
     chai
       .request(app)
       .get("/export")

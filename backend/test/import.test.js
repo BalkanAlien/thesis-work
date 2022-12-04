@@ -1,4 +1,4 @@
-import chai from "chai";
+/*import chai from "chai";
 import chaiHttp from "chai-http";
 import sinon from "sinon";
 import { faker } from "@faker-js/faker";
@@ -92,3 +92,4 @@ describe("import controller test", () => {
       });
   });
 });
+*/

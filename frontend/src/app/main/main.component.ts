@@ -17,6 +17,7 @@ export class MainComponent implements OnInit {
   TransformedMessages: Array<any> = [];
   TransformedMessagesSent: Array<any> = [];
   CollectedElements: Array<any> = [];
+  CheckedElements: Array<any> = [];
   SelectedTransformed: Array<any> = [];
   OriginalResponse: Array<any> = [];
 
@@ -88,11 +89,20 @@ export class MainComponent implements OnInit {
     console.log(this.CollectedElements);
   }
   
+  onChangeGenesys(value: any) : void {
+    if(this.CheckedElements.includes(value)) {
+      this.CheckedElements = this.CheckedElements.filter((item) => item !== value);
+    } else {
+      this.CheckedElements.push(value);
+    }
+    console.log(this.CheckedElements);
+  }
+
   //get collected and store transformed  based on collected id = transformed id 
   showCollectedFromTransformed() {
     this.tms.getTransformedCannedMessages(2307475884, '2307475884%3A3250042652855494%3AT2vPmE97qolpOd78wC6vJtxMkCCI7Rd%2B%3Aalphado1')
     .pipe(finalize(() => {
-      for(let collected of this.CollectedElements) {
+      for(let collected of this.CollectedElements) { 
         for(let transformed of this.TransformedMessages) {
           if(collected.id === transformed.id) {
             this.SelectedTransformed.push(transformed);
