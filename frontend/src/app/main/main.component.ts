@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { GetMessagesService } from './get-messages.service';
 import { GetTransformationsService } from './get-transformations.service';
 import { finalize } from 'rxjs/operators';
@@ -20,7 +20,9 @@ export class MainComponent implements OnInit {
   CheckedElements: Array<any> = [];
   SelectedTransformed: Array<any> = [];
   OriginalResponse: Array<any> = [];
-
+  @ViewChildren("checkboxes")
+  checkboxes!: QueryList<ElementRef>;
+  
   constructor(private gms: GetMessagesService, private tms: GetTransformationsService) { }
 
   ngOnInit(): void {
@@ -56,6 +58,9 @@ export class MainComponent implements OnInit {
     .subscribe((response: any) => {
       this.TransformedMessages = response;
       this.TransformedMessagesSent = this.TransformedMessages;
+      this.checkboxes.forEach((element) => {
+        element.nativeElement.checked = false;
+      });
     });
   }
 
@@ -114,6 +119,9 @@ export class MainComponent implements OnInit {
     .subscribe((response: any) => {
       this.TransformedMessages = response;
       this.TransformedMessagesSent = this.SelectedTransformed;
+      this.checkboxes.forEach((element) => {
+        element.nativeElement.checked = false;
+      });
     });
   }
 

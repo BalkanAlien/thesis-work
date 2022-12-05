@@ -12,7 +12,7 @@
       </thead>
     <tbody>
         <tr *ngFor="let element of MessagesSent">
-          <td><input class="pointer" (change)="onChange(element)" type="checkbox" value="{{element}}"></td>
+          <td><input class="pointer" (change)="onChange(element)" #checkboxes type="checkbox" value="{{element}}"></td>
           <td>{{element.name}}</td>
           <td class="ellipsis" *ngIf="element.isFolder == false; else show">{{element.text}}</td>
           <ng-template #show>{{element.subfoldersCount}} folders, {{element.messagesCount}} messages</ng-template>
