@@ -150,6 +150,7 @@ table {
   width: 100%;
   font-size: medium;
   font-family: 'Times New Roman', Times, serif;
+  table-layout: fixed;
 }
 
 thead {
